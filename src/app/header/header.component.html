@@ -1,0 +1,14 @@
+<mat-toolbar style="background: rgba(0,0,0,0.7);color: #fff;padding: 0;font-weight: bold;">
+  <mat-toolbar-row style="width:100%;margin: 0 auto;max-width:1400px;padding: 0;">
+    <ul style="list-style:none;width: 100%;display: flex;align-items: center;padding: 0;">
+      <li style="margin-right: 5px;"><button mat-button style="font-weight: bold;font-size: 25px;padding: 10px;">Movies</button></li>
+      <li style="margin-right: 5px;"><button mat-button>{{menuValues[0]}}</button></li>
+      <li style="margin-right: 5px;"><button mat-button>{{menuValues[1]}}</button></li>
+      <li style="margin-right: 5px;"><button mat-button>{{menuValues[2]}}</button></li>
+    </ul>
+    <div class="search-box" for="search">
+      <input autocomplete="off" id="search" type="text" placeholder="Search movies and series">
+      <button mat-button id="search-button"><i class="fas fa-search" style="font-size:15px;"></i></button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,139 @@
+<style>
+  #images-container {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+  }
+
+  #images-container-blur {
+    width: 100%;
+    display: flex;
+  }
+
+  .image-item {
+    width: 100%;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .image-item img {
+    width: 100%;
+  }
+
+  #ctrl-left {
+    left: 10px;
+    bottom: 45%;
+  }
+
+
+  #ctrl-right {
+    right: 10px;
+    bottom: 45%;
+  }
+
+  .arrow_style {
+    position: absolute;
+    font-size: 25px;
+    color: #eee;
+    border-radius: 100%;
+    text-align: center;
+    width: 50px;
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    height: 50px;
+    background: rgba(0, 0, 0, .4);
+    z-index: 2;
+  }
+
+  .arrow_style:hover {
+    background: rgba(0, 0, 0, .3);
+  }
+
+  #slider {
+    width: 100%;
+    max-width: 1400px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+
+  #blur {
+    width: 100%;
+    height: 100%;
+    filter: blur(400px);
+    z-index: -1;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    overflow: hidden;
+  }
+
+  #blur-darker {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+    top: 0px;
+    background: #000;
+    filter: blur(200px);
+  }
+
+  .movie-info-slider {
+    background: rgba(0, 0, 0, .7);
+    position: absolute;
+    bottom: 55px;
+    right: 50px;
+    color: #fff;
+    border-radius: 2px;
+    padding: 10px 20px;
+    font-size: 20px;
+    max-width: 600px;
+    box-sizing: border-box;
+  }
+</style>
+<div id="slider">
+  <button (click)="moveLeft()" class="arrow_style" matRipple id="ctrl-left"><i class="fas fa-chevron-left"></i></button>
+
+  <div id="images-container">
+    <div *ngFor="let i of images" class="image-item">
+      <img src="{{i}}">
+      <div class="movie-info-slider">
+        <div style="margin-bottom:15px;font-weight: bold;">Bohemian Rhapsody</div>
+        <div style="font-size:13px;height: 100%;">
+          <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/gbmkFWdtihe1VfydTDsieQ6VfGL.jpg" style="border-radius:2px;width:130px;margin-bottom:10px;margin-right:10px;float: left;">
+          <div style="display:flex;flex-direction: column;height: 195px;justify-content: space-between;">
+            <div>
+              Singer Freddie Mercury, guitarist Brian May, drummer Roger Taylor and bass
+              guitarist John Deacon take the
+              music world by storm when they form the rock 'n' roll band Queen in 1970. Hit songs become instant
+              classics.
+              When Mercury's increasingly wild lifestyle starts to spiral out of control, Queen soon faces its greatest
+              challenge yet – finding a way to keep the band together amid the success and excess.
+            </div>
+            <div style="margin-top:10px;">
+              <button mat-button style="background:rgba(255,255,255,0.2);">View
+                more</button>
+            </div>
+          </div>
+        </div>
+        <div style="background: #fff;padding: 5px;position: absolute;top:0;right: 0;color: #3d3d3d;font-size: 13px;border-radius: 0px 3px 0px 0px;">
+          <i class="fas fa-calendar-day" style="margin-right: 5px;"></i>2018
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div style="font-size:18px;background: rgba(255,255,255,0.8);font-weight:bold;color:#3d3d3d;border-radius:5px;padding: 10px;position: absolute;top:10px;left: 10px;">On
+    theaters</div>
+  <button (click)="moveRight()" class="arrow_style" matRipple id="ctrl-right"><i class="fas fa-chevron-right"></i></button>
+</div>
+<div id="blur-darker"></div>
+<div id="blur">
+  <div id="images-container-blur">
+    <div *ngFor="let i of images" class="image-item"><img src="{{i}}"></div>
+  </div>
+</div>
