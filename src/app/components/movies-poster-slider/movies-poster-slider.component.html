@@ -1,23 +1,14 @@
-<div style="width:100%;max-width:1400px;margin: 0 auto;background: rgba(255,255,255,0.8);padding: 10px;box-sizing: border-box;border-radius: 2px;">
+<div style="width:100%;max-width:1400px;margin: 10px auto;background: rgba(255,255,255,0.8);padding: 20px;box-sizing: border-box;border-radius: 2px;">
   <div style="width:100%;display:flex;justify-content: space-between;margin-bottom: 10px;align-items: center;">
-    <h3 style="margin-bottom:10px;margin-top:10px;color: #111;"><i class="fas {{icon}}" style="margin-right:10px;font-size: 25px;vertical-align: middle;"></i>{{title}}</h3>
+    <h3 style="margin-bottom:10px;margin-top:10px;color: #111;"><i class="{{icon}}" style="margin-right:10px;font-size: 25px;vertical-align: middle;"></i>{{title}}</h3>
     <div>
       <button (click)="moveLeft()" class="arrow_style" matRipple id="ctrl-left"><i class="fas fa-chevron-left"></i></button>
       <button (click)="moveRight()" class="arrow_style" matRipple id="ctrl-right"><i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
   <div style="overflow: hidden;width:100%;">
-    <div id="movies-poster-slider" style="display:flex;width: 100%;width: 100%;">
-      <app-movie-poster></app-movie-poster>
-      <app-movie-poster></app-movie-poster>
-      <app-movie-poster></app-movie-poster>
-      <app-movie-poster></app-movie-poster>
-      <app-movie-poster></app-movie-poster>
-      <app-movie-poster></app-movie-poster>
-      <app-movie-poster></app-movie-poster>
-      <app-movie-poster></app-movie-poster>
-      <app-movie-poster></app-movie-poster>
-      <app-movie-poster></app-movie-poster>
+    <div id="movies-poster-slider" style="display:flex;width: 100%;">
+      <app-movie-poster *ngFor="let movie of movies" [movie]="movie"></app-movie-poster>
     </div>
   </div>
 

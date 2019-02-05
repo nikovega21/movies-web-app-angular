@@ -91,28 +91,28 @@
     border-radius: 2px;
     padding: 10px 20px;
     font-size: 20px;
-    max-width: 600px;
+    max-width: 500px;
+    min-width: 500px;
     box-sizing: border-box;
+    height: 210px;
   }
 </style>
 <div id="slider">
   <button (click)="moveLeft()" class="arrow_style" matRipple id="ctrl-left"><i class="fas fa-chevron-left"></i></button>
-
   <div id="images-container">
-    <div *ngFor="let i of images" class="image-item">
-      <img src="{{i}}">
+    <div *ngFor="let movie of movies"  class="image-item">
+      <img src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}">
       <div class="movie-info-slider">
-        <div style="margin-bottom:15px;font-weight: bold;">Bohemian Rhapsody</div>
+        <div style="margin-bottom:15px;font-weight: bold;">{{movie.title}}</div>
         <div style="font-size:13px;height: 100%;">
-          <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/gbmkFWdtihe1VfydTDsieQ6VfGL.jpg" style="border-radius:2px;width:130px;margin-bottom:10px;margin-right:10px;float: left;">
-          <div style="display:flex;flex-direction: column;height: 195px;justify-content: space-between;">
-            <div>
-              Singer Freddie Mercury, guitarist Brian May, drummer Roger Taylor and bass
-              guitarist John Deacon take the
-              music world by storm when they form the rock 'n' roll band Queen in 1970. Hit songs become instant
-              classics.
-              When Mercury's increasingly wild lifestyle starts to spiral out of control, Queen soon faces its greatest
-              challenge yet – finding a way to keep the band together amid the success and excess.
+          <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{movie.poster_path}}" style="border-radius:2px;width:100px;margin-bottom:10px;margin-right:10px;float: left;">
+          <div style="display:flex;flex-direction: column;height: 150px;justify-content: space-between;">
+            <div style="overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 6; /* number of lines to show */
+            -webkit-box-orient: vertical;">
+              {{movie.overview}}
             </div>
             <div style="margin-top:10px;">
               <button mat-button style="background:rgba(255,255,255,0.2);">View
@@ -120,8 +120,8 @@
             </div>
           </div>
         </div>
-        <div style="background: #fff;padding: 5px;position: absolute;top:0;right: 0;color: #3d3d3d;font-size: 13px;border-radius: 0px 3px 0px 0px;">
-          <i class="fas fa-calendar-day" style="margin-right: 5px;"></i>2018
+        <div style="background: rgba(255, 255, 255, .7);padding: 5px;position: absolute;bottom:0;right: 0;color: #000;font-size: 13px;border-radius: 0px 0px 3px 0px;">
+          <i class="fas fa-calendar-day" style="margin-right: 5px;"></i>{{movie.release_date}}
         </div>
       </div>
 
@@ -134,6 +134,6 @@
 <div id="blur-darker"></div>
 <div id="blur">
   <div id="images-container-blur">
-    <div *ngFor="let i of images" class="image-item"><img src="{{i}}"></div>
+    <div *ngFor="let movie of movies" class="image-item"><img src="https://image.tmdb.org/t/p/original{{movie.backdrop_path}}"></div>
   </div>
 </div>

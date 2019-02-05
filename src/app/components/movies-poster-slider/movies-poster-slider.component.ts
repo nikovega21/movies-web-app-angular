@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as $ from 'jquery';
+import { PeliculasService } from 'src/app/services/peliculas.service';
 @Component({
   selector: 'app-movies-poster-slider',
   templateUrl: './movies-poster-slider.component.html',
@@ -11,15 +12,40 @@ export class MoviesPosterSliderComponent implements OnInit {
 
   @Input()
   icon: string;
-  constructor() { }
+
+  @Input()
+  type: string;
+
+  movies: any;
+
+  moviesProvider: PeliculasService;
+
+  constructor(public movies_provider: PeliculasService) {
+    this.moviesProvider = movies_provider;
+  }
+
+  validateTypeOfMovies() {
+    switch (this.type) {
+      case "popular":
+        this.moviesProvider.getPopulares().then((data: any) => {
+          this.movies = data;
+        });
+        break;
+      case "on_showing":
+        this.moviesProvider.getCartelera().then((data: any) => {
+          this.movies = data;
+        });
+        break;
+      default: break;
+    }
+  }
 
   ngOnInit() {
-    console.log(this.title);
+    this.validateTypeOfMovies();
   }
 
   moveLeft() {
     let slider = $("#movies-poster-slider");
-    console.log(slider.css("marginLeft"));
     if (slider.css("marginLeft") != "0px") {
       slider.animate({ "marginLeft": "+=230px" }, 300);
     }

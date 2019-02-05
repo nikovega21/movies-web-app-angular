@@ -5,6 +5,7 @@ import { Jsonp } from '@angular/http';
   providedIn: 'root'
 })
 export class PeliculasService {
+  
   populars: any[] ;
   billboard: any[] ;
   trailer: any[];
