@@ -7,10 +7,19 @@ import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatInputModule,MatToolbarModule,MatIconModule, MatFormFieldModule, MatCardModule,MatRippleModule} from '@angular/material';
+
 import { MoviesSliderComponent } from './movies-slider/movies-slider.component';
 import { MoviePosterComponent } from './movie-poster/movie-poster.component';
 import { MoviesPosterSliderComponent } from './movies-poster-slider/movies-poster-slider.component';
+
+// @material
+import { MaterialModule } from './MaterialAngularModule';
+// Services
+import { PeliculasService } from './services/peliculas.service';
+import { JsonpModule } from '@angular/http';
+import { MovieComponent } from './movie/movie.component';
+import { HomeComponent } from './home/home.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,21 +28,18 @@ import { MoviesPosterSliderComponent } from './movies-poster-slider/movies-poste
     FooterComponent,
     MoviesSliderComponent,
     MoviePosterComponent,
-    MoviesPosterSliderComponent
+    MoviesPosterSliderComponent,
+    MovieComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
+    JsonpModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatFormFieldModule,MatInputModule,
-    MatCardModule,
-    MatRippleModule
+    MaterialModule
   ],
-  providers: [],
+  providers: [PeliculasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
