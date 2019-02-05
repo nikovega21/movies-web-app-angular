@@ -1,21 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as $ from 'jquery';
+import { PeliculasService } from 'src/app/services/peliculas.service';
 @Component({
   selector: 'app-movies-slider',
   templateUrl: './movies-slider.component.html',
   styleUrls: ['./movies-slider.component.css']
 })
+
 export class MoviesSliderComponent implements OnInit {
-  constructor() { }
+
+  moviesProvider: PeliculasService;
+
+  constructor(public movies_provider: PeliculasService) {
+    this.moviesProvider = movies_provider;
+  }
   counter: number = 0;
-  images: String[] = ["https://image.tmdb.org/t/p/original/93xA62uLd5CwMOAs37eQ7vPc1iV.jpg",
-    "https://image.tmdb.org/t/p/original/pbXgLEYh8rlG2Km5IGZPnhcnuSz.jpg",
-    "https://image.tmdb.org/t/p/original/xcaSYLBhmDzJ6P14bcKe0KTh3QV.jpg"];
+
+  movies: any;
 
   ngOnInit() {
-    
+    this.loadMovies();
   }
 
+  loadMovies() {
+    this.moviesProvider.getCartelera().then((data: any) => this.movies = data.filter(x => x.backdrop_path != null && x.overview != ""));
+  }
   changeBlurRight() {
     let blur = $("#images-container-blur");
     blur.animate({
@@ -31,7 +40,7 @@ export class MoviesSliderComponent implements OnInit {
   }
   moveRight() {
     let contenedor = $("#images-container");
-    if (this.counter < 2) {
+    if (this.counter < this.movies.length-1) {
       contenedor.animate({
         "marginLeft": "-=100%"
       }, 800);
@@ -46,7 +55,7 @@ export class MoviesSliderComponent implements OnInit {
       contenedor.animate({
         "marginLeft": "+=100%"
       }, 800);
-      this.counter--; 
+      this.counter--;
       this.changeBlurLeft();
     }
   }
